@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+<div *ngIf="firstThreeAppointments.length>0 else noAppointmentsMessage">
+    <h4>Your next 3 appointments:</h4>
+    <div class="table-container">
+    <table>
+    <tr>
+        <th class="column">Patient firstname</th>
+        <th class="column">Patient lastname</th>
+        <th class="column">Examination title</th>
+        <th class="column">Duration</th>
+        <th class="column">Price</th>
+        <th class="column">Date of exam</th>
+        <th class="column">Time of exam</th>
+        <th class="column"></th>
+    </tr>
+    <tr *ngFor="let n of firstThreeAppointments">
+        <td class="column">{{n.patientFirstname}}</td>
+        <td class="column">{{n.patientLastname}}</td>
+        <td class="column">{{n.examTitle}}</td>
+        <td class="column">{{n.examDuration}}</td>
+        <td class="column">{{n.examPrice}}</td>
+        <td class="column">{{n.selectedDate}}</td>
+        <td class="column">{{n.selectedTime}}</td>
+        <td>
+            <button (click)="navigate(n.patientUsername)">Navigate to patient profile</button>
+        </td>
+    </tr>
+    </table>
+    </div>
+</div>
+<ng-template #noAppointmentsMessage>
+    <h4>Your next 3 appointments:</h4>
+    You have no future appointments
+</ng-template>
+<br>
+<h4>Make a report:</h4>
+<table>
+    <tr>
+        <td>Patient firstname:</td>
+        <td>
+            <input type="text" name="username" [(ngModel)]="repfirstname">
+        </td>
+    </tr>
+    <tr>
+        <td>Patient lastname:</td>
+        <td>
+            <input type="text" name="username" [(ngModel)]="replastname">
+        </td>
+    </tr>
+    <tr>
+        <td>Date of examination:</td>
+        <td>
+            <input type="date" [(ngModel)]="examDate">
+        </td>
+    </tr>
+    <tr>
+        <td>Time of examination:</td>
+        <td>
+            <input type="time" [(ngModel)]="examTime">
+        </td>
+    </tr>
+    <tr>
+        <td>Reason of coming:</td>
+        <td>
+            <textarea class="large-textarea" name="new" [(ngModel)]="reason"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>Diagnosis:</td>
+        <td>
+            <textarea class="large-textarea" name="new" [(ngModel)]="diagnosis"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>Reccomended therapy:</td>
+        <td>
+            <textarea class="large-textarea" name="new" [(ngModel)]="therapy"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>Reccomended date of next examination:</td>
+        <td>
+            <input type="date" [(ngModel)]="nextDate">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button (click)="makeReport()">Insert report</button>
+        </td>
+    </tr>
+</table>
+<br>
+{{message}}
+</div>
+</body>

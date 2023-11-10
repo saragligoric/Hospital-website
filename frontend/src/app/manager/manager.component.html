@@ -1,0 +1,357 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<header>
+  <nav>
+    <div class="logout-container">
+      <button class="logout-button" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+</header>
+
+<body>
+<div class="container">
+<h2>Doctors:</h2>
+<table>
+  <tr>
+      <th class="column">profile picture</th>
+      <th class="column">firstname</th>
+      <th class="column">lastname</th>
+      <th class="column">address</th>
+      <th class="column">phone</th>
+      <th class="column">email</th>
+      <th class="column">licence</th>
+      <th class="column">specialization</th>
+      <th class="column">branch</th>
+      <th></th>
+      <th></th>
+      <th></th>
+  </tr>
+  <tr *ngFor="let n of allDoctors; let i=index">
+      <td class="column"><img src={{n.imageurl}} alt="n.firstname + ' Image'" class="img" ></td>
+      <ng-container *ngIf="!n.isEditing; else editMode">
+        <td class="column">{{n.firstname}}</td>
+        <td class="column">{{n.lastname}}</td>
+        <td class="column">{{n.address}}</td>
+        <td class="column">{{n.phone}}</td>
+        <td class="column">{{n.email}}</td>
+        <td class="column">{{n.licence}}</td>
+        <td class="column">{{n.specialization}}</td>
+        <td class="column">{{n.branch}}</td>
+      </ng-container>
+      <ng-template #editMode>
+          <td><input type="text" [(ngModel)]="n.firstname" /></td>
+          <td><input type="text" [(ngModel)]="n.lastname" /></td>
+          <td><input type="text" [(ngModel)]="n.address" /></td>
+          <td><input type="text" [(ngModel)]="n.phone" /></td>
+          <td><input type="text" [(ngModel)]="n.email" /></td>
+          <td><input type="text" [(ngModel)]="n.licence" /></td>
+          <td><input type="text" [(ngModel)]="n.specialization" /></td>
+          <td><input type="text" [(ngModel)]="n.branch" /></td>
+      </ng-template>
+      <td>
+        <button (click)="deleteDoctor(n)">Delete</button>
+      </td>
+        <ng-container *ngIf="!n.isEditing; else saveCancelMode">
+          <td>
+          <button (click)="editItemDoctor(i)">Edit</button>
+          </td>
+        </ng-container>
+        <ng-template #saveCancelMode>
+          <td>
+          <button (click)="saveItemDoctor(i)">Save</button>
+          </td>
+          <td>
+          <button (click)="cancelEditDoctor(i)">Cancel</button>
+          </td>
+        </ng-template>
+  </tr>
+</table>
+<br>
+
+<h2>Patients:</h2>
+<table class="patient">
+  <tr>
+      <th class="column">profile picture</th>
+      <th class="column">firstname</th>
+      <th class="column">lastname</th>
+      <th class="column">address</th>
+      <th class="column">phone</th>
+      <th class="column">email</th>
+      <th></th>
+      <th></th>
+      <th></th>
+  </tr>
+  <tr *ngFor="let n of allPatients; let i=index">
+      <td class="column"><img src={{n.imageurl}} alt="n.firstname + ' Image'" class="img" ></td>
+      <ng-container *ngIf="!n.isEditing; else editMode">
+        <td class="column">{{n.firstname}}</td>
+        <td class="column">{{n.lastname}}</td>
+        <td class="column">{{n.address}}</td>
+        <td class="column">{{n.phone}}</td>
+        <td class="column">{{n.email}}</td>
+      </ng-container>
+      <ng-template #editMode>
+          <td><input type="text" [(ngModel)]="n.firstname" /></td>
+          <td><input type="text" [(ngModel)]="n.lastname" /></td>
+          <td><input type="text" [(ngModel)]="n.address" /></td>
+          <td><input type="text" [(ngModel)]="n.phone" /></td>
+          <td><input type="text" [(ngModel)]="n.email" /></td>
+      </ng-template>
+      <td>
+        <button (click)="deletePatient(n)">Delete</button>
+      </td>
+        <ng-container *ngIf="!n.isEditing; else saveCancelMode">
+          <td>
+          <button (click)="editItemPatient(i)">Edit</button>
+          </td>
+        </ng-container>
+        <ng-template #saveCancelMode>
+          <td>
+          <button (click)="saveItemPatient(i)">Save</button>
+          </td>
+          <td>
+          <button (click)="cancelEditPatient(i)">Cancel</button>
+          </td>
+        </ng-template>
+  </tr>
+</table>
+<br>
+
+<h2>Add a new doctor:</h2>
+<table class="adddoc">
+    <tr>
+        <td>Username:</td>
+        <td>
+            <input type="text" name="username" [(ngModel)]="regusername">
+        </td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td>
+            <input type="password" name="password" [(ngModel)]="regpassword"> 
+        </td>
+    </tr>
+    <tr>
+        <td>Firstname:</td>
+        <td>
+            <input type="text" name="password" [(ngModel)]="regfirstname"> 
+        </td>
+    </tr>
+    <tr>
+        <td>Lastname:</td>
+        <td>
+            <input type="text" name="password" [(ngModel)]="reglastname"> 
+        </td>
+    </tr>
+    <tr>
+      <td>Specialization:</td>
+      <td>
+          <input type="text" name="password" [(ngModel)]="regspec"> 
+      </td>
+    </tr>
+    <tr>
+      <td>Branch:</td>
+      <td>
+          <input type="text" name="password" [(ngModel)]="regbranch"> 
+      </td>
+    </tr>
+    <tr>
+      <td>Licence:</td>
+      <td>
+          <input type="text" name="password" [(ngModel)]="reglicence"> 
+      </td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td>
+            <input type="text" name="password" [(ngModel)]="regphone"> 
+        </td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>
+            <input type="text" name="password" [(ngModel)]="regemail"> 
+        </td>
+    </tr>
+    <tr>
+      <td>Address:</td>
+      <td>
+          <input type="text" name="password" [(ngModel)]="regaddress"> 
+      </td>
+  </tr>
+    <tr>
+        <td colspan="2">
+            <button (click)="addDoctor()">Add doctor</button>
+        </td>
+    </tr>
+</table>
+<p>{{ message1 }}</p>
+
+<h2>Add a new specialization:</h2>
+<table class="adddoc">
+    <tr>
+        <td>Title:</td>
+        <td>
+            <input type="text" name="spec" [(ngModel)]="spectitle">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button (click)="addSpec()">Add specialization</button>
+        </td>
+    </tr>
+</table>
+<p>{{ message2 }}</p>
+
+<h2>Available examinations:</h2>
+<table class="patient">
+  <tr>
+      <th class="column">specialization</th>
+      <th class="column">title</th>
+      <th class="column">duration</th>
+      <th class="column">price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+  </tr>
+  <tr *ngFor="let n of allExaminations; let i = index">
+        <ng-container *ngIf="!n.isEditing; else editMode">
+          <td class="column">{{ n.specialization }}</td>
+          <td class="column">{{ n.title }}</td>
+          <td class="column">{{ n.duration }}</td>
+          <td class="column">{{ n.price }}</td>
+        </ng-container>
+        <ng-template #editMode>
+          <td class="column">{{ n.specialization }}</td>
+          <td class="column">{{ n.title }}</td>
+            <td><input type="text" [(ngModel)]="newDuration" /></td>
+            <td><input type="text" [(ngModel)]="newPrice" /></td>
+        </ng-template>
+      <td>
+        <button (click)="deleteExamination(n)">Delete examination</button>
+      </td>
+        <ng-container *ngIf="!n.isEditing; else saveCancelMode">
+          <td>
+          <button (click)="editItem(i)">Edit</button>
+          </td>
+        </ng-container>
+        <ng-template #saveCancelMode>
+          <td>
+          <button (click)="saveItem(i)">Save</button>
+          </td>
+          <td>
+          <button (click)="cancelEdit(i)">Cancel</button>
+          </td>
+        </ng-template>
+  </tr>
+</table>
+<br>
+
+<h2>Add a new examination:</h2>
+<table class="adddoc">
+    <tr>
+        <td>For specialization:</td>
+        <td>
+            <input type="text" name="spec" [(ngModel)]="examspec">
+        </td>
+    </tr>
+    <tr>
+        <td>Title:</td>
+        <td>
+            <input type="text" name="spec" [(ngModel)]="examtitle">
+        </td>
+    </tr>
+    <tr>
+        <td>Duration:</td>
+        <td>
+            <input type="text" name="spec" [(ngModel)]="examduration">
+        </td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td>
+            <input type="text" name="spec" [(ngModel)]="examprice">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button (click)="addExamination()">Add examination</button>
+        </td>
+    </tr>
+</table>
+<p>{{ message3 }}</p>
+
+<h2>Examination requests:</h2>
+<table class="exam">
+  <tr>
+      <th class="column">specialization</th>
+      <th class="column">title</th>
+      <th class="column">duration</th>
+      <th class="column">price</th>
+      <th></th>
+      <th></th>
+  </tr>
+  <tr *ngFor="let n of allRequests">
+      <td class="column">{{n.specialization}}</td>
+      <td class="column">{{n.title}}</td>
+      <td class="column">{{n.duration}}</td>
+      <td class="column">{{n.price}}</td>
+      <td>
+        <button (click)="approve(n)">Approve</button>
+        </td>
+        <td>
+        <button (click)="deny(n)">Deny</button>
+      </td>
+  </tr>
+</table>
+<br>
+
+<h2>Registration requests:</h2>
+<table class="patient">
+  <tr>
+      <th class="column">firstname</th>
+      <th class="column">lastname</th>
+      <th class="column">username</th>
+      <th class="column">address</th>
+      <th class="column">phone</th>
+      <th class="column">email</th>
+      <th></th>
+      <th></th>
+  </tr>
+  <tr *ngFor="let n of allRegistrations">
+      <td class="column">{{n.firstname}}</td>
+      <td class="column">{{n.lastname}}</td>
+      <td class="column">{{n.username}}</td>
+      <td class="column">{{n.address}}</td>
+      <td class="column">{{n.phone}}</td>
+      <td class="column">{{n.email}}</td>
+      <td>
+        <button (click)="acceptRequest(n)">Accept</button>
+      </td>
+      <td>
+        <button (click)="rejectRequest(n)">Reject</button>
+      </td>
+  </tr>
+</table>
+{{message4}}
+<br>
+
+<form class="password-form" #passwordChangeForm="ngForm" (ngSubmit)="onSubmit()">
+  <label for="oldPassword">Old Password:</label>
+  <input type="password" id="oldPassword" name="oldPassword" [(ngModel)]="oldpass">
+
+  <label for="newPassword">New Password:</label>
+  <input type="password" id="newPassword" name="newPassword" [(ngModel)]="newpass">
+
+  <label for="confirmPassword">Confirm New Password:</label>
+  <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmnewpass">
+
+  <button type="submit" [disabled]="!passwordChangeForm.valid">Change Password</button>
+</form>
+<p>{{ message }}</p>
+
+</div>
+</body>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+    .profile {
+      text-align: center;
+      max-width: 400px;
+      background-color: #fff; /* Background color for the contact info section */
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle elevation effect */
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      align-content: center;
+    }
+
+    .profile img {
+      max-width: 100%;
+      border-radius: 50%;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #333;
+    }
+        
+        .container {
+            max-width: 70%;
+            min-width: 70%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @media screen and (max-width: 600px) {
+          .profile img {
+            max-width: 60%;
+          }
+
+          .password-form {
+            max-width: 90%;
+          }
+        }
+
+        .contact-info {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 400px;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #fff; /* Background color for the contact info section */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle elevation effect */
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 16px; /* Increase font size for better readability */
+            color: #333; /* Darker text color */
+        }
+
+    .password-form {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+    }
+
+    .password-form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .password-form input {
+      width: 95%;
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: #f0f0f0;
+    }
+
+    .password-form button {
+      background-color: #326521;
+      color: #fff;
+      border-color: #fff;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px; /* Add rounded edges */
+      border-width: 2px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .password-form button:hover {
+      background-color: #2D7F11; /* Change color on hover */
+    }
+
+    p.message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .message{
+      font-size: 12px;
+    }
+
+        .table-container {
+            margin-top: 20px;
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 12px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .exam{
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          padding: 20px;
+          border-radius: 5px;
+        }
+
+    select {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #326521;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #2D7F11;
+    }
+
+    p {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  
+  <div class="profile">
+    <img src={{imageurl}} alt="firstname + ' Image'" class="img"> <br>
+    {{doctor.firstname}}&nbsp;{{doctor.lastname}} <br>
+  </div>
+
+  <div class="contact-info">
+    {{address}} <br>
+    {{email}} <br>
+    {{phone}} <br>
+    Licence number: {{licence}}<br>
+    Specialization: {{specialization}}<br>
+    Branch: {{branch}}<br>
+  </div>
+
+  <form class="password-form" #passwordChangeForm="ngForm" (ngSubmit)="onSubmit()">
+    <label for="oldPassword">Old Password:</label>
+    <input type="password" id="oldPassword" name="oldPassword" [(ngModel)]="oldpass">
+  
+    <label for="newPassword">New Password:</label>
+    <input type="password" id="newPassword" name="newPassword" [(ngModel)]="newpass">
+  
+    <label for="confirmPassword">Confirm New Password:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmnewpass">
+  
+    <button type="submit" [disabled]="!passwordChangeForm.valid">Change Password</button>
+    <p class="message">{{ message }}</p>
+  </form>
+  <br>
+
+  <h2>Your chosen examinations:</h2>
+  <div class="table-container">
+  <table>
+    <tr>
+        <th>Title</th>
+        <th>Duration</th>
+        <th>Price</th>
+    </tr>
+    <tr *ngFor="let n of filteredExaminations">
+        <td>{{n.title}}</td>
+        <td>{{n.duration}}</td>
+        <td>{{n.price}}</td>
+    </tr>
+  </table>
+  </div>
+
+  <h2>Add or remove examinations:</h2>
+  <div class="exam">
+    <label for="examinations">Available examinations for your specialization:</label>
+    <select [(ngModel)]="title" id="examinations">
+      <option *ngFor="let n of allExaminations" value="{{n.title}}">{{n.title}}</option>
+    </select>
+    <br/>
+    <button (click)="addExamination()">Add selected examination</button>
+    <button (click)="removeExamination()">Remove selected examination</button>
+    <p>{{ message1 }}</p>
+    <p>{{ message2 }}</p>
+  </div>
+
+</div>
+</body>
+</html>

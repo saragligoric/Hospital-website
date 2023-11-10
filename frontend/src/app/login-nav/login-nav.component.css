@@ -1,0 +1,75 @@
+/* Reset some default browser styles */
+body, header, nav, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Style the header */
+  header {
+    background-color: #326521  ;
+    color: #fff;
+    padding: 3px 0;
+    text-align: center;
+    padding-top: 0;
+  }
+  
+  /* Style the navigation menu */
+  nav {
+    background-color: #84AA56 ;
+    display: flex; /* Make the navigation items and logout container flex items */
+    justify-content: space-between; /* Push items to the start and end */
+    align-items: center;
+    padding: 10px 20px; /* Add padding to the navigation */
+  }
+  
+  /* Style the navigation list */
+  .nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  /* Style individual navigation items */
+  .nav-item {
+    margin: 0 20px;
+    background-color: #326521 ;
+    border-color: #fff;
+    border: 1px solid #fff ; /*Add border for the boxes */
+    border-radius: 5px; /* Add rounded edges */
+    border-width: 1px;
+    padding: 5px 10px;
+    cursor: pointer;
+    /* transition: background-color 0.3s ease; */
+    font-size: 14px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Remove underline from links */
+  .nav-item a {
+    text-decoration: none;
+    color: inherit; /* Inherit the text color from the parent */
+  }
+  
+  /* Style the logout button */
+  .logout-button {
+    background-color: #326521 ;
+    color: #fff;
+    border-color: #fff;
+    border-radius: 5px; /* Add rounded edges */
+    padding: 5px 10px;
+    cursor: pointer;
+    /* transition: background-color 0.3s ease;  */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Change button color on hover */
+  .logout-button:hover {
+    background-color: #A01010; /* Change to a different color on hover */
+  }
+  
+  .logout-container {
+    display: flex; /* Make it a flex container */
+    align-items: center; /* Vertically center the button */
+  }

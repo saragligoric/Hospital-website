@@ -1,0 +1,56 @@
+.img {
+    width: 110px; 
+    height: 110px;
+}
+
+.patient {
+    width: 70%;
+    border-collapse: collapse;
+}
+
+.exam {
+    width: 50%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 12px;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.last{
+    text-align: right;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 12px;
+}
+
+input[type="text"] {
+    width: 95%;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/* Button styling */
+button {
+    padding: 5px 10px;
+    background-color: #326521;
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin:3px;
+}
+
+button:hover {
+    background-color: #2D7F11;
+}
+

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Appointments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+    table {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+      text-align: center;
+    }
+
+  /* Table row style */
+  tr {
+    border-bottom: 1px solid #ccc;
+  }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+  /* Table cell style */
+  td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  /* Input field style */
+  input[type="text"],
+  input[type="password"],
+  input[type="file"] {
+    width: 95%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f0f0f0;
+  }
+
+  /* Button style */
+  button {
+    background-color: #326521;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #2D7F11;
+  }
+
+    p.message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .message{
+      font-size: 12px;
+      max-width: 280px;
+    }
+
+
+        h2 {
+            font-size: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+    @media screen and (max-width: 600px) {
+      .profile img {
+        max-width: 60%;
+      }
+
+      .password-form {
+        max-width: 90%;
+      }
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+<h2>Register:</h2>
+<table>
+    <tr>
+        <label>Username:</label>
+            <input type="text" name="username" [(ngModel)]="regusername">
+    </tr>
+    <tr>
+        <label>Password:</label>
+            <input type="password" name="password" [(ngModel)]="regpassword"> 
+    </tr>
+    <tr>
+        <label>Confirm password:</label>
+            <input type="password" name="password" [(ngModel)]="regpasswordconfirm"> 
+    </tr>
+    <tr>
+        <label>Firstname:</label>
+            <input type="text" name="password" [(ngModel)]="regfirstname"> 
+    </tr>
+    <tr>
+        <label>Lastname:</label>
+            <input type="text" name="password" [(ngModel)]="reglastname"> 
+    </tr>
+    <tr>
+        <label>Address:</label>
+            <input type="text" name="password" [(ngModel)]="regaddress"> 
+    </tr>
+    <tr>
+        <label>Phone:</label>
+            <input type="text" name="password" [(ngModel)]="regphone"> 
+    </tr>
+    <tr>
+        <label>Email:</label>
+            <input type="text" name="password" [(ngModel)]="regemail"> 
+    </tr>
+        <tr>
+            <td colspan="4">
+                <input  id="i" type="file" name="slika" accept=".jpg,.png" (change)="change($event)">
+            </td>
+        </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;">
+            <button (click)="register()">Send registration request</button>
+        </td>
+    </tr>
+        <p class="message">{{ message3 }}</p>
+        <p class="message">{{ message2 }}</p>
+        <p class="message">{{ messageimg }}</p>
+</table>
+</div>
+</body>

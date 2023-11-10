@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile {
+            text-align: center;
+            max-width: 400px;
+            background-color: #fff; /* Background color for the contact info section */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle elevation effect */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .profile img {
+            max-width: 100%;
+            border-radius: 50%;
+        }
+
+        .contact-info {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 400px;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #fff; /* Background color for the contact info section */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle elevation effect */
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 16px; /* Increase font size for better readability */
+            color: #333; /* Darker text color */
+        }
+
+        /* Table styling */
+        h2 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .table-container {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 12px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        table tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr:last-child {
+            border-bottom: none;
+        }
+
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="time"] {
+            width: 90%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #326521;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2D7F11;
+        }
+
+        p {
+            text-align: center;
+            color: black;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .back{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="profile">
+        <img src={{doctor.imageurl}} alt="firstname + ' Image'" class="img"> <br>
+        {{doctor.firstname}}&nbsp;{{doctor.lastname}} <br>
+    </div>
+    <div class="contact-info">
+        {{doctor.address}} <br>
+        {{doctor.email}} <br>
+        {{doctor.phone}} <br>
+        Licence number: {{doctor.licence}}<br>
+        Specialization: {{doctor.specialization}}<br>
+        Branch: {{doctor.branch}}<br>
+    </div>
+
+    <h4>Examinations available:</h4>
+    <div class="table-container">
+        <table>
+        <tr>
+            <th class="column">Title</th>
+            <th class="column">Duration</th>
+            <th class="column">Price</th>
+        </tr>
+        <tr *ngFor="let n of filteredExaminations">
+            <td class="column">{{n.title}}</td>
+            <td class="column">{{n.duration}}</td>
+            <td class="column">{{n.price}}</td>
+        </tr>
+        </table>
+    </div>
+    <br>
+
+    <h4>Make an appointment:</h4>
+    <table>
+        <tr>
+            <td>Title of examination:</td>
+            <td>
+                <input type="text" name="username" [(ngModel)]="examtitle">
+            </td>
+        </tr>
+        <tr>
+            <td>Date of examination:</td>
+            <td>
+                <input type="date" [(ngModel)]="selectedDate">
+            </td>
+        </tr>
+        <tr>
+            <td>Time of examination:</td>
+            <td>
+                <input type="time" [(ngModel)]="selectedTime">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <button (click)="makeAppointment()">Make an appointment</button>
+            </td>
+        </tr>
+    </table>
+    <p>{{message}}</p>
+
+    <a class="back" href="javascript:void(0);" (click)="goBack()">Back</a>
+
+</div>
+</body>
+</html>

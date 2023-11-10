@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Appointments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh; /* Make the body take the full height of the viewport */
+        }
+        
+        .container {
+            max-width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+    table {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+      text-align: center;
+    }
+
+  /* Table row style */
+  tr {
+    border-bottom: 1px solid #ccc;
+  }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+  /* Table cell style */
+  td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  /* Input field style */
+  input[type="text"],
+  input[type="password"],
+  input[type="file"] {
+    width: 95%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f0f0f0;
+  }
+
+  /* Button style */
+  button {
+    background-color: #326521;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #2D7F11;
+  }
+
+    p.message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .message{
+      font-size: 12px;
+      max-width: 280px;
+    }
+
+
+        h2 {
+            font-size: 20px;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<h2>Login as manager:</h2>
+<table>
+    <tr>
+        <label>Username:</label>
+            <input type="text" name="username" [(ngModel)]="username">
+    </tr>
+    <tr>
+        <label>Password:</label>
+            <input type="password" name="password" [(ngModel)]="password"> 
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;">
+            <button (click)="login()">Login</button>
+        </td>
+    </tr>
+    <p class="message">{{message}}</p>
+</table>
+</div>
+</body>

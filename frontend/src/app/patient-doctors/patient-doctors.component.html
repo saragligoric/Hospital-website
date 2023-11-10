@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Appointments</title>
+    <style>
+        /* Overall styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            max-width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table styling */
+        h2 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 12px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Button styling */
+        button {
+            padding: 5px 10px;
+            background-color: #326521;
+            border-radius: 5px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2D7F11;
+        } 
+
+        .sortDiv {
+            text-align: center;
+        }
+
+        .buttonSort {
+            margin: 10px; /* Adjust the margin to control the space between buttons */
+            padding: 5px 10px; /* Adjust padding for button size */
+            background-color: #326521; /* Button background color */
+            color: #ffffff; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 5px; /* Add rounded corners */
+            cursor: pointer; /* Add pointer cursor on hover */
+        }
+
+        .search-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .search-input {
+            width: 95%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .search-button {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Doctors:</h2>
+    <div class="table-container">
+    <table>
+        <tr>
+            <th class="column">Profile picture</th>
+            <th class="column">Firstname</th>
+            <th class="column">Lastname</th>
+            <th class="column">Specialization</th>
+            <th class="column">Branch</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let n of allDoctors">
+            <td class="column"><img src={{n.imageurl}} alt="n.firstname + ' Image'" class="img" ></td>
+            <td class="column">{{n.firstname}}</td>
+            <td class="column">{{n.lastname}}</td>
+            <td class="column">{{n.specialization}}</td>
+            <td class="column">{{n.branch}}</td>
+            <td>
+                <button (click)="navigate(n.username)">Navigate to doctor profile</button>
+            </td>
+        </tr>
+    </table>
+    </div>
+
+    <div class="sortDiv">
+        <button (click)="sort('firstname')" class="buttonSort">Sort by firstname</button>
+        <button (click)="sort('lastname')" class="buttonSort">Sort by lastname</button>
+        <button (click)="sort('specialization')" class="buttonSort">Sort by specialization</button>
+        <button (click)="sort('branch')" class="buttonSort">Sort by branch</button>
+    </div>
+
+    <br>
+    <form class="search-form">
+        <div class="search-group">
+            <label for="paramName">Search by name:</label>
+            <input type="text" id="paramName" name="paramName" [(ngModel)]="searchParamName" class="search-input">
+        </div>
+        
+        <div class="search-group">
+            <label for="paramSurname">Search by surname:</label>
+            <input type="text" id="paramSurname" name="paramSurname" [(ngModel)]="searchParamSurname" class="search-input">
+        </div>
+    
+        <div class="search-group">
+            <label for="paramSpec">Search by specialization:</label>
+            <input type="text" id="paramSpec" name="paramSpec" [(ngModel)]="searchParamSpec" class="search-input">
+        </div>
+    
+        <div class="search-group">
+            <label for="paramBranch">Search by branch:</label>
+            <input type="text" id="paramBranch" name="paramBranch" [(ngModel)]="searchParamBranch" class="search-input">
+        </div>
+    
+        <div class="search-button">
+            <button (click)="search()" class="search-button">Search</button>
+        </div>
+    </form>
+    <br>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!-- <nav>
+    <ul>
+      <li><a routerLink="doctorprofile">Profile</a></li>
+      <li><a routerLink="doctorcheckups">Checkups</a></li>
+      <li><a routerLink="doctorother">Other</a></li>
+      <button (click)="logout()">Logout</button> 
+    </ul>
+</nav> -->
+
+<header>
+  <nav>
+    <ul class="nav-list">
+      <li class="nav-item"><a routerLink="doctorprofile">Profile</a></li>
+      <li class="nav-item"><a routerLink="doctorcheckups">Checkups</a></li>
+      <li class="nav-item"><a routerLink="doctorother">Other</a></li>
+      <!-- <li><button class="logout-button" (click)="logout()">Logout</button></li> -->
+    </ul>
+    <div class="logout-container">
+      <button class="logout-button" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+</header>

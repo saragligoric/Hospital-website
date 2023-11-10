@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f0f0f0; /* Background color for the entire page */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* height: 100vh;  */
+    }
+
+    .profile {
+      text-align: center;
+      max-width: 400px;
+      background-color: #fff; /* Background color for the contact info section */
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle elevation effect */
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .profile img {
+      max-width: 100%;
+      border-radius: 50%;
+    }
+
+    .contact-info {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      max-width: 400px;
+      text-align: center;
+      margin-top: 20px;
+      background-color: #fff; /* Background color for the contact info section */
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle elevation effect */
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .contact-info p {
+      margin: 10px 0;
+      font-size: 16px; /* Increase font size for better readability */
+      color: #333; /* Darker text color */
+    }
+
+    .password-form {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .password-form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .password-form input {
+      width: 95%;
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: #f0f0f0;
+    }
+
+    .password-form button {
+      background-color: #326521;
+      color: #fff;
+      border-color: #fff;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px; /* Add rounded edges */
+      border-width: 2px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .password-form button:hover {
+      background-color: #2D7F11; /* Change color on hover */
+    }
+
+    p.message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .message{
+      font-size: 12px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .profile img {
+        max-width: 60%;
+      }
+
+      .password-form {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile">
+    <img class="img" src="{{imageurl}}" alt="Profile Image">
+    <br>
+    {{firstname}}&nbsp;{{lastname}}
+  </div>
+  
+  <div class="contact-info">
+    {{address}} <br>
+    {{email}} <br>
+    {{phone}}
+  </div>
+  <br>
+
+  <button (click)="editPatient()">Edit profile</button>
+  <table *ngIf = "isEditing" class="patient">
+    <tr>
+      <th class="column"></th>
+      <th class="column"></th>
+      <th class="column"></th>
+      <th class="column"></th>
+      <th></th>
+      <th></th>
+      <th></th>
+  </tr>
+  <tr>
+  <!-- <ng-template *ngIf="isEditing"> -->
+    <td><input type="text" [(ngModel)]="newfirstname" /></td>
+    <td><input type="text" [(ngModel)]="newlastname" /></td>
+      <td><input type="text" [(ngModel)]="newaddress" /></td>
+      <td><input type="text" [(ngModel)]="newemail" /></td>
+      <td><input type="text" [(ngModel)]="newphone" /></td>
+  <!-- </ng-template> -->
+  <!-- <ng-template *ngIf="isEditing"> -->
+    <td>
+    <button (click)="saveItem()">Save</button>
+    </td>
+    <td>
+    <button (click)="cancelEdit()">Cancel</button>
+    </td>
+  <!-- </ng-template> -->
+</tr>
+</table>
+
+<!-- <h2>Available examinations:</h2>
+<table class="patient">
+  <tr>
+      <th class="column">specialization</th>
+      <th class="column">title</th>
+      <th class="column">duration</th>
+      <th class="column">price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+  </tr>
+  <tr *ngFor="let n of allExaminations; let i = index">
+        <ng-container *ngIf="!n.isEditing; else editMode">
+          <td class="column">{{ n.specialization }}</td>
+          <td class="column">{{ n.title }}</td>
+          <td class="column">{{ n.duration }}</td>
+          <td class="column">{{ n.price }}</td>
+        </ng-container>
+        <ng-template #editMode>
+          <td class="column">{{ n.specialization }}</td>
+          <td class="column">{{ n.title }}</td>
+            <td><input type="text" [(ngModel)]="newDuration" /></td>
+            <td><input type="text" [(ngModel)]="newPrice" /></td>
+        </ng-template>
+      <td>
+        <button (click)="deleteExamination(n)">Delete examination</button>
+      </td>
+        <ng-container *ngIf="!n.isEditing; else saveCancelMode">
+          <td>
+          <button (click)="editItem(i)">Edit</button>
+          </td>
+        </ng-container>
+        <ng-template #saveCancelMode>
+          <td>
+          <button (click)="saveItem(i)">Save</button>
+          </td>
+          <td>
+          <button (click)="cancelEdit(i)">Cancel</button>
+          </td>
+        </ng-template>
+  </tr>
+</table> -->
+
+  <form class="password-form" #passwordChangeForm="ngForm" (ngSubmit)="onSubmit()">
+    <label for="oldPassword">Old Password:</label>
+    <input type="password" id="oldPassword" name="oldPassword" [(ngModel)]="oldpass">
+  
+    <label for="newPassword">New Password:</label>
+    <input type="password" id="newPassword" name="newPassword" [(ngModel)]="newpass">
+  
+    <label for="confirmPassword">Confirm New Password:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmnewpass">
+  
+    <button type="submit" [disabled]="!passwordChangeForm.valid">Change Password</button>
+    <p class="message">{{ message }}</p>
+  </form>
+</body>
+</html>
+

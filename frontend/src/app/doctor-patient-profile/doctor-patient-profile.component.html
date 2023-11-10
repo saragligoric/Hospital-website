@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+<div class="table-container">
+    <table>
+        <tr>
+            <th class="column">Date</th>
+            <th class="column">Time</th>
+            <th class="column">Doctor name</th>
+            <th class="column">Doctor surname</th>
+            <th class="column">Doctor specialization</th>
+            <th class="column">Reason for coming</th>
+            <th class="column">Diagnosis</th>
+            <th class="column">Therapy</th>
+            <th class="column">Date of next appointment</th>
+        </tr>
+        <tr *ngFor="let n of allReports">
+            <td class="column">{{n.selectedDate}}</td>
+            <td class="column">{{n.selectedTime}}</td>
+            <td class="column">{{n.doctorFirstname}}</td>
+            <td class="column">{{n.doctorLastname}}</td>
+            <td class="column">{{n.doctorSpecialization}}</td>
+            <td class="column">{{n.reason}}</td>
+            <td class="column">{{n.diagnosis}}</td>
+            <td class="column">{{n.therapy}}</td>
+            <td class="column">{{n.nextDate}}</td>
+        </tr>
+    </table>
+</div>
+<br>
+
+<a class="back" href="javascript:void(0);" (click)="goBack()">Back</a>
+
+</div>
+</body>

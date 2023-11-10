@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<p>Request a new examination type:</p>
+<table>
+  <tr>
+    <td>Title:</td>
+    <td>
+      <input type="text" name="username" [(ngModel)]="examinationTitle">
+    </td>
+  </tr>
+  <tr>
+    <td>Duration:</td>
+    <td>
+      <input type="text" name="password" [(ngModel)]="examinationDuration">
+    </td>
+  </tr>
+  <tr>
+    <td>Price:</td>
+    <td>
+      <input type="text" name="text" [(ngModel)]="examinationPrice">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <button (click)="request()">Send examination request</button>
+    </td>
+  </tr>
+</table>
+<div class="message">{{message}}</div>
+</body>
